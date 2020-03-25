@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+<div id="map"></div>
+<div>
+    <button onclick="handleSwitchType()" id="switch-type">wall</button>
+    <input id='color-input' placeholder="color"/>
+    <button onclick="handleSetColor()">set</button>
+    <p style="display: inline;" id='current-color'>red</p>
+    <button onclick="handleGenerate()">generate map</button>
+    <button onclick="handleReset()">reset</button>
+    <div>
+        <input type="file" id="selectFiles" value="Import"/><br/>
+        <button id="import">Import</button>
+    </div>
+
+</div>
+</body>
+
+</html>
+
+
+<script>
+    let color = 'red';
+    let type = 'wall';
+    let w = 58, h = 36;
+    let handleSwitchType = () => {
+        let cur = $('#switch-type').html();
+        if (cur === 'wall') {
+            $('#switch-type').html('pac');
+            type = 'pac';
+        } else if (cur === 'pac') {
+            $('#switch-type').html('wall');
+            type = 'wall';
+        }
+    };
+    let handleSetColor = () => {
+        color = $('#color-input').val();
+        $('#current-color').html(color);
+    };
+    let changeState = (grid, flag) => {
+        if (flag === 2) {
+            $(grid).prop('selh', !$(grid).prop('selh'));
+            if ($(grid).prop('selh') === true) {
+                let c = color;
+                if (type === 'pac') {
+                    c = 'pink';
+                }
+                $(grid).css('border-top', c + ' solid 3px');
+                $(grid).prop('colorh', c);
+                $(grid).prop('typeh', type);
+            } else {
+                $(grid).css('border-top', 'none');
+            }
+        } else {
+            $(grid).prop('selv', !$(grid).prop('selv'));
+            if ($(grid).prop('selv') === true) {
+                let c = color;
+                if (type === 'pac') {
+                    c = 'pink';
+                }
+                $(grid).css('border-left', c + ' solid 3px');
+                $(grid).prop('colorv', c);
+                $(grid).prop('typev', type);
+            } else {
+                $(grid).css('border-left', 'none');
+            }
+        }
+    }
+    let handleClick = (e) => {
+        let beginGrid = e.target;
+        let lastGrid = e.target;
+        let flag = 0;
+        $('.grid').unbind();
+        $('.grid').mouseover((e) => {
+            let curGrid = e.target;
+            if (flag !== 2 && $(curGrid).prop('col') === $(beginGrid).prop('col')) {
+                if (Math.abs($(curGrid).prop('row') - $(lastGrid).prop('row')) === 1) {
+                    if (flag === 0) {
+                        flag = 1;
+                        changeState(beginGrid, flag);
+                    }
+                    changeState(curGrid, flag);
+                    lastGrid = curGrid;
+                }
+            } else if (flag !== 1 && $(curGrid).prop('row') === $(beginGrid).prop('row')) {
+                if (Math.abs($(curGrid).prop('col') - $(lastGrid).prop('col')) === 1) {
+                    if (flag === 0) {
+                        flag = 2;
+                        changeState(beginGrid, flag);
+                    }
+                    changeState(curGrid, flag);
+                    lastGrid = curGrid;
+                }
+            }
+        })
+        $('.grid').click((e) => {
+            $('.grid').unbind();
+            $('.grid').click(handleClick);
+        })
+    }
+    let handleGenerate = () => {
+        //horizontal
+        let walls = [];
+        let pacs = [];
+        let unitSz = 20;
+        for (let i = 0; i < h; i++) {
+            for (let j = 0; j < w; j++) {
+
+                if ($('#' + i + '-' + j).prop('selh') === true) {
+                    let startPos = [i, j];
+                    let endPos = [i, j];
+                    let c = $('#' + i + '-' + j).prop('colorh');
+                    let t = $('#' + i + '-' + j).prop('typeh');
+                    while (j + 1 < w && $('#' + i + '-' + (j + 1)).prop('selh') === true && $('#' + i + '-' + (j + 1)).prop('colorh') === c && $('#' + i + '-' + (j + 1)).prop('typeh') === t) {
+                        j++;
+                        endPos = [i, j];
+                    }
+                    let e = {
+                        start: [startPos[1] * unitSz, startPos[0] * unitSz],
+                        end: [endPos[1] * unitSz + unitSz, endPos[0] * unitSz],
+                    }
+                    if (t === 'wall') {
+                        e.color = c;
+                        walls.push(e);
+                    } else if (t === 'pac') {
+                        // e = {
+                        //     beginLoc: [e.start[1] / unitSz, e.start[0] / unitSz],
+                        //     endLoc: [e.end[1] / unitSz, e.end[0] / unitSz],
+                        // }
+                        pacs.push(e);
+                    }
+                }
+            }
+        }
+
+        //vertical
+        for (let j = 0; j < w; j++) {
+            for (let i = 0; i < h; i++) {
+                if ($('#' + i + '-' + j).prop('selv') === true) {
+                    let startPos = [i, j];
+                    let endPos = [i, j];
+                    let c = $('#' + i + '-' + j).prop('colorv');
+                    let t = $('#' + i + '-' + j).prop('typev');
+                    while (i + 1 < h && $('#' + (i + 1) + '-' + j).prop('selv') === true && $('#' + (i + 1) + '-' + j).prop('colorv') === c && $('#' + (i + 1) + '-' + j).prop('typev') === t) {
+                        i++;
+                        endPos = [i, j];
+                    }
+                    let e = {
+                        start: [startPos[1] * unitSz, startPos[0] * unitSz],
+                        end: [endPos[1] * unitSz, endPos[0] * unitSz + unitSz],
+                    }
+                    if (t === 'wall') {
+                        e.color = c;
+                        walls.push(e);
+                    } else if (t === 'pac') {
+                        // e = {
+                        //     beginLoc: [e.start[1] / unitSz, e.start[0] / unitSz],
+                        //     endLoc: [e.end[1] / unitSz, e.end[0] / unitSz],
+                        // }
+                        pacs.push(e);
+                    }
+                }
+            }
+        }
+        // console.log(JSON.stringify({ wall: walls, pac: pacs }));
+        download(JSON.stringify({wall: walls, pac: pacs}), 'map.json', 'application/json');
+
+
+    };
+    let handleReset = () => {
+        $('.grid').prop('selv', false);
+        $('.grid').prop('selh', false);
+        $('.grid').css('border-top', 'none');
+        $('.grid').css('border-left', 'none');
+    };
+    let download = (content, fileName, contentType) => {
+        var a = document.createElement("a");
+        var file = new Blob([content], {type: contentType});
+        a.href = URL.createObjectURL(file);
+        a.download = fileName;
+        a.click();
+    };
+    let handleImport = (data) => {
+        let unitSz = 20;
+        let walls = data.wall;
+        let initColor = color;
+        let initType = type;
+        if(walls !== undefined) {
+            for(let wall of walls) {
+                if(wall.start[0] === wall.end[0]) {
+                    let r = wall.start[0] / unitSz;
+                    let cs = Math.min(wall.start[1] / unitSz, wall.end[1] / unitSz);
+                    let ce = Math.max(wall.start[1] / unitSz, wall.end[1] / unitSz) - 1;
+                    for(let c = cs; c <= ce; c++) {
+                        color = wall.color;
+                        changeState($('#' + c + '-' + r), 1);
+                    }
+                }
+                else {
+                    let c = wall.start[1] / unitSz;
+                    let rs = Math.min(wall.start[0] / unitSz, wall.end[0] / unitSz);
+                    let re = Math.max(wall.start[0] / unitSz, wall.end[0] / unitSz) - 1;
+                    for(let r = rs; r <= re; r++) {
+                        color = wall.color;
+                        changeState($('#' + c + '-' + r), 2);
+                    }
+                }
+            }
+        }
+        let pacs = data.pac;
+        let set = [];
+        if(pacs !== undefined) {
+            for(let pac of pacs) {
+                if(pac.start[0] === pac.end[0]) {
+                    let r = pac.start[0] / unitSz;
+                    let cs = Math.min(pac.start[1] / unitSz, pac.end[1] / unitSz);
+                    let ce = Math.max(pac.start[1] / unitSz, pac.end[1] / unitSz) - 1;
+                    for(let c = cs; c <= ce; c++) {
+                        color = 'pink';
+                        type = 'pac';
+                        if(!set.includes('v-' + c + '-' + r)) {
+                            changeState($('#' + c + '-' + r), 1);
+                            set.push('v-' + c + '-' + r);
+                        }
+
+                    }
+                }
+                else {
+
+                    let c = pac.start[1] / unitSz;
+                    let rs = Math.min(pac.start[0] / unitSz, pac.end[0] / unitSz);
+                    let re = Math.max(pac.start[0] / unitSz, pac.end[0] / unitSz) - 1;
+                    for(let r = rs; r <= re; r++) {
+                        color = 'pink';
+                        type = 'pac';
+                        if(!set.includes('h-' + c + '-' + r)) {
+                            changeState($('#' + c + '-' + r), 2);
+                            set.push('h-' + c + '-' + r);
+                        }
+                    }
+                }
+            }
+        }
+
+        color = initColor;
+        type = initType;
+    };
+
+
+    $(document).ready(() => {
+        let btnHtml = (c, r) => '<button id="' + c + '-' + r + '" class="grid" style="display: inline; width:20px; height: 20px;"></button>'
+        for (let i = 0; i < h; i++) {
+            $('#map').append('<div>');
+            for (let j = 0; j < w; j++) {
+                $('#map').append(btnHtml(i, j));
+            }
+            $('#map').append('</div>');
+        }
+        $('.grid').each((idx, tar) => {
+            $(tar).prop('row', $(tar).attr('id').split('-')[0]);
+            $(tar).prop('col', $(tar).attr('id').split('-')[1]);
+            $(tar).prop('selv', false);
+            $(tar).prop('selh', false);
+        })
+        $('.grid').click(handleClick);
+        $('#import').click(() => {
+            let files = document.getElementById('selectFiles').files;
+            console.log(files);
+            if (files.length <= 0) {
+                return false;
+            }
+
+            let fr = new FileReader();
+
+            fr.onload = function (e) {
+                // console.log(e);
+                let result = JSON.parse(e.target.result);
+                handleImport(result);
+                // let formatted = JSON.stringify(result, null, 2);
+                // document.getElementById('result').value = formatted;
+            };
+
+
+            fr.readAsText(files.item(0));
+        });
+
+        handleReset();
+    })
+
+</script>

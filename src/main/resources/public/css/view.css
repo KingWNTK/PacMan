@@ -1,0 +1,176 @@
+body {
+    background-color: black;
+}
+
+canvas {
+    outline: brown solid medium;
+}
+
+#operations {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    z-index: 2;
+    font-family: 'Press Start 2P', cursive;
+}
+
+#pause {
+    margin-top: 10px;
+}
+
+#pacman {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    z-index: 1;
+}
+
+#map {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    z-index: 2;
+}
+
+#switcher {
+    position: absolute;
+    top: 740px;
+    left: 30px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+#menu {
+    position: relative;
+    top: 740px;
+    margin-left: 230px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    width: 600px;
+    float: left;
+}
+
+
+#info {
+    position: absolute;
+    left: 30px;
+    top: 600px;
+    z-index: 2;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+}
+
+#scoreNum, #highScoreNum, #lifeNum, #levelNum, #dotsEatenNum {
+    position: absolute;
+    left: 200px;
+}
+
+#logoT {
+    position: absolute;
+    left: 500px;
+    top: 355px;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 20px;
+    z-index: 2;
+}
+
+#dragon {
+    color: red;
+}
+
+#ball {
+    color: orange;
+}
+
+#logoPause {
+    position: absolute;
+    left: 550px;
+    top: 70px;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 20px;
+    z-index: 2;
+}
+
+#logoOver {
+    position: absolute;
+    left: 500px;
+    top: 50px;
+    color: red;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 20px;
+    z-index: 2;
+}
+
+#levelNoti {
+    position: absolute;
+    left: 30px;
+    top: 500px;
+    color: red;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 20px;
+    z-index: 2;
+}
+
+#logo {
+    position: absolute;
+    left: 1000px;
+    top: 550px;
+    width: 150px;
+    z-index: 2;
+}
+
+
+.ghost {
+    display: none;
+}
+
+.multiselect-selected-text {
+    color: white;
+    font-size: 10px;
+}
+
+.radio {
+    font-size: 10px;
+}
+
+.dropdown-toggle {
+    border-color: orange;
+    border-width: 2px;
+}
+
+.dropdown-menu {
+    background: black;
+}
+
+.multiselect-container>li>a>label {
+    padding: 3px 20px 3px;
+}
+
+
+#switch-type {
+    float: left;
+    display: inline;
+}
+
+#color-input {
+    display: inline;
+    width: 150px;
+}
+
+#current-color {
+    color: red;
+}
+
+#selectFiles {
+    width: 300px;
+}
+
+.form-control {
+    font-size: 10px;
+}
+
+
+button.btn.btn-danger {
+    font-size: 10px;
+}

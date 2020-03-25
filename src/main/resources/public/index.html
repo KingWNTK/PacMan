@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css"/>
+    <script src="js/editor.js"></script>
+    <script src="js/view.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/view.css">
+    <title>Pac-Man</title>
+</head>
+<body>
+<div>
+    <button id="switcher" type="button" class="btn btn-warning">Map Editor</button>
+</div>
+<div id="pacman-body">
+    <div id="operations">
+        <button id="start" type="button" class="btn btn-primary">Start</button>
+        <br>
+        <button id="pause" type="button" class="btn btn-secondary">Pause</button>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <select id="switchMap">
+            <option value="db" selected>DragonBall</option>
+            <option value="cxk">BasketBall</option>
+        </select>
+    </div>
+    <div id="pacman">
+        <canvas id="pacman-map" width="1160" height="720"></canvas>
+    </div>
+    <div id="info">
+        <span id="life">LIFE:<span id="lifeNum"></span></span>
+        <br>
+        <span id="level">LEVEL:<span id="levelNum"></span></span>
+        <br>
+        <span id="score">SCORE:<span id="scoreNum">000000</span></span>
+        <br>
+        <span id="highScore">HIGHSCORE:<span id="highScoreNum">000000</span></span>
+        <br>
+        <span id="dotsEaten">DOTS-EATEN:<span id="dotsEatenNum">000000</span></span>
+    </div>
+    <div id="logoT"><span id="dragon">DRAGON</span><span id="ball">BALL</span></div>
+    <div id="logoPause" style="display: none">PAUSE</div>
+    <div id="logoOver" style="display: none">GAME OVER</div>
+    <div id="levelNoti" style="display: none">ENTERED LEVEL 1</div>
+
+    <img class="ghost" id="blueDown1" src="pics/blue/down-1.png" style="visibility: hidden">
+    <img class="ghost" id="blueDown2" src="pics/blue/down-2.png" style="visibility: hidden">
+    <img class="ghost" id="blueLeft1" src="pics/blue/left-1.png" style="visibility: hidden">
+    <img class="ghost" id="blueLeft2" src="pics/blue/left-2.png" style="visibility: hidden">
+    <img class="ghost" id="blueRight1" src="pics/blue/right-1.png" style="visibility: hidden">
+    <img class="ghost" id="blueRight2" src="pics/blue/right-2.png" style="visibility: hidden">
+    <img class="ghost" id="blueUp1" src="pics/blue/up-1.png" style="visibility: hidden">
+    <img class="ghost" id="blueUp2" src="pics/blue/up-2.png" style="visibility: hidden">
+
+    <img class="ghost" id="pinkDown1" src="pics/pink/down-1.png" style="visibility: hidden">
+    <img class="ghost" id="pinkDown2" src="pics/pink/down-2.png" style="visibility: hidden">
+    <img class="ghost" id="pinkLeft1" src="pics/pink/left-1.png" style="visibility: hidden">
+    <img class="ghost" id="pinkLeft2" src="pics/pink/left-2.png" style="visibility: hidden">
+    <img class="ghost" id="pinkRight1" src="pics/pink/right-1.png" style="visibility: hidden">
+    <img class="ghost" id="pinkRight2" src="pics/pink/right-2.png" style="visibility: hidden">
+    <img class="ghost" id="pinkUp1" src="pics/pink/up-1.png" style="visibility: hidden">
+    <img class="ghost" id="pinkUp2" src="pics/pink/up-2.png" style="visibility: hidden">
+
+    <img class="ghost" id="redDown1" src="pics/red/down-1.png" style="visibility: hidden">
+    <img class="ghost" id="redDown2" src="pics/red/down-2.png" style="visibility: hidden">
+    <img class="ghost" id="redLeft1" src="pics/red/left-1.png" style="visibility: hidden">
+    <img class="ghost" id="redLeft2" src="pics/red/left-2.png" style="visibility: hidden">
+    <img class="ghost" id="redRight1" src="pics/red/right-1.png" style="visibility: hidden">
+    <img class="ghost" id="redRight2" src="pics/red/right-2.png" style="visibility: hidden">
+    <img class="ghost" id="redUp1" src="pics/red/up-1.png" style="visibility: hidden">
+    <img class="ghost" id="redUp2" src="pics/red/up-2.png" style="visibility: hidden">
+
+    <img class="ghost" id="yellowDown1" src="pics/yellow/down-1.png" style="visibility: hidden">
+    <img class="ghost" id="yellowDown2" src="pics/yellow/down-2.png" style="visibility: hidden">
+    <img class="ghost" id="yellowLeft1" src="pics/yellow/left-1.png" style="visibility: hidden">
+    <img class="ghost" id="yellowLeft2" src="pics/yellow/left-2.png" style="visibility: hidden">
+    <img class="ghost" id="yellowRight1" src="pics/yellow/right-1.png" style="visibility: hidden">
+    <img class="ghost" id="yellowRight2" src="pics/yellow/right-2.png" style="visibility: hidden">
+    <img class="ghost" id="yellowUp1" src="pics/yellow/up-1.png" style="visibility: hidden">
+    <img class="ghost" id="yellowUp2" src="pics/yellow/up-2.png" style="visibility: hidden">
+
+    <img class="ghost" id="flashB1" src="pics/flash/blue-1.png" style="visibility: hidden">
+    <img class="ghost" id="flashB2" src="pics/flash/blue-2.png" style="visibility: hidden">
+    <img class="ghost" id="flashW1" src="pics/flash/white-1.png" style="visibility: hidden">
+    <img class="ghost" id="flashW2" src="pics/flash/white-2.png" style="visibility: hidden">
+
+    <img class="ghost" id="eyeBDown" src="pics/die/down.png" style="visibility: hidden">
+    <img class="ghost" id="eyeBUp" src="pics/die/up.png" style="visibility: hidden">
+    <img class="ghost" id="eyeBLeft" src="pics/die/left.png" style="visibility: hidden">
+    <img class="ghost" id="eyeBRight" src="pics/die/right.png" style="visibility: hidden">
+
+    <img class="fruit" id="pineapple" src="pics/fruit/pineapple.png" style="visibility: hidden; display: none">
+    <img class="fruit" id="banana" src="pics/fruit/banana.png" style="visibility: hidden; display: none">
+    <img class="fruit" id="watermelon" src="pics/fruit/watermelon.png" style="visibility: hidden; display: none">
+    <img class="fruit" id="durian" src="pics/fruit/durian.png" style="visibility: hidden; display: none">
+    <img class="fruit" id="strawberry" src="pics/fruit/strawberry.png" style="visibility: hidden; display: none">
+
+</div>
+
+<div id="map-editor" style="display: none">
+    <div id="map"></div>
+    <div id="menu">
+        <select id="switch-type">
+            <option value="wall">Wall</option>
+            <option value="pac">Pac</option>
+            <option value="energizer">Energizer</option>
+            <option value="tunnel-1">Tunnel 1</option>
+            <option value="tunnel-2">Tunnel 2</option>
+            <option value="ghost-wall">G-Wall</option>
+        </select>
+        <p style="display: inline; color: white">Color:</p>
+        <input class="form-control" id="color-input" type="text">
+
+
+        <button onclick="handleSetColor()" type="button" class="btn btn-primary" style="font-size: 10px">Set</button>
+        <p style="display: inline;" id='current-color'>red</p>
+        <div>
+            <input style="display: inline" class="form-control" type="file" id="selectFiles" value="Import"/>
+            <button id="import" style="display: inline; font-size: 10px;" type="button" class="btn btn-primary">Import
+                Map
+            </button>
+        </div>
+        <div>
+            <button type="button" class="btn btn-primary" onclick="handleGenerate()" style="font-size: 10px">Save Map
+            </button>
+            <button type="button" class="btn btn-danger" onclick="handleReset()">reset</button>
+            <button type="button" class="btn btn-primary" id="play-customized" style="font-size: 10px">Play with this
+                map
+            </button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

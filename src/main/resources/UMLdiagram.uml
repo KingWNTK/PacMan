@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>edu.rice.comp504.pacman.model.strategy.ghost.AfterDieStrategy</OriginalElement>
+  <nodes>
+    <node x="2041.9999999999998" y="575.5">edu.rice.comp504.pacman.model.man.Man</node>
+    <node x="337.0" y="1194.5">edu.rice.comp504.pacman.model.strategy.ghost.RandomWalkStrategy</node>
+    <node x="2315.3333333333335" y="76.0">edu.rice.comp504.pacman.model.MovingObject</node>
+    <node x="605.9999999999998" y="1182.5">edu.rice.comp504.pacman.model.strategy.ghost.ChaseManStrategy</node>
+    <node x="2246.0" y="1395.0">edu.rice.comp504.pacman.controller.PacManController</node>
+    <node x="1584.7499999999998" y="192.0">edu.rice.comp504.pacman.model.Typeable</node>
+    <node x="0.0" y="1137.0">edu.rice.comp504.pacman.model.strategy.collision.ScoreStrategy</node>
+    <node x="2001.1249999999998" y="0.0">java.util.EventListener</node>
+    <node x="0.0" y="737.5">edu.rice.comp504.pacman.model.strategy.ICollisionStrategy</node>
+    <node x="1343.25" y="1395.0">edu.rice.comp504.pacman.model.cmd.IPacManCmd</node>
+    <node x="2363.0" y="449.0">edu.rice.comp504.pacman.model.ghost.Ghost</node>
+    <node x="1919.1249999999998" y="192.0">java.beans.PropertyChangeListener</node>
+    <node x="1399.9999999999998" y="633.0">edu.rice.comp504.pacman.model.wall.Wall</node>
+    <node x="962.0" y="1496.0">edu.rice.comp504.pacman.model.cmd.InteractCmd</node>
+    <node x="1355.9999999999998" y="1148.5">edu.rice.comp504.pacman.model.strategy.ghost.StayAwayStrategy</node>
+    <node x="1471.0" y="1542.0">edu.rice.comp504.pacman.model.cmd.MoveCmd</node>
+    <node x="1681.9999999999998" y="1194.5">edu.rice.comp504.pacman.model.strategy.ghost.IntersectStrategy</node>
+    <node x="1720.9999999999998" y="610.0">edu.rice.comp504.pacman.model.pac.Pac</node>
+    <node x="1115.9999999999998" y="1183.0">edu.rice.comp504.pacman.model.strategy.ghost.AmbushStrategy</node>
+    <node x="858.9999999999998" y="1171.5">edu.rice.comp504.pacman.model.strategy.ghost.BeforeBirthStrategy</node>
+    <node x="1071.9999999999998" y="714.0">edu.rice.comp504.pacman.model.strategy.IUpdateStrategy</node>
+    <node x="0.0" y="1395.0">edu.rice.comp504.pacman.model.GameContext</node>
+    <node x="1892.0" y="1395.0">edu.rice.comp504.pacman.model.DispatchAdapter</node>
+    <node x="1924.9999999999998" y="1194.5">edu.rice.comp504.pacman.model.strategy.ghost.AfterDieStrategy</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="edu.rice.comp504.pacman.model.ghost.Ghost" target="edu.rice.comp504.pacman.model.MovingObject">
+      <point x="126.33333333333348" y="-314.0" />
+      <point x="2678.8333333333335" y="429.0" />
+      <point x="2571.0833333333335" y="429.0" />
+      <point x="85.25" y="141.5" />
+    </edge>
+    <edge source="edu.rice.comp504.pacman.model.man.Man" target="edu.rice.comp504.pacman.model.MovingObject">
+      <point x="100.33333333333348" y="-187.5" />
+      <point x="2292.833333333333" y="429.0" />
+      <point x="2400.5833333333335" y="429.0" />
+      <point x="-85.25" y="141.5" />
+    </edge>
+    <edge source="edu.rice.comp504.pacman.model.wall.Wall" target="java.beans.PropertyChangeListener">
+      <point x="75.25" y="-130.0" />
+      <point x="1625.7499999999998" y="419.0" />
+      <point x="1956.7499999999998" y="419.0" />
+      <point x="-112.875" y="25.5" />
+    </edge>
+    <edge source="edu.rice.comp504.pacman.model.strategy.ghost.AmbushStrategy" target="edu.rice.comp504.pacman.model.strategy.IUpdateStrategy">
+      <point x="0.0" y="-60.5" />
+      <point x="0.0" y="49.0" />
+    </edge>
+    <edge source="edu.rice.comp504.pacman.model.strategy.ghost.BeforeBirthStrategy" target="edu.rice.comp504.pacman.model.strategy.IUpdateStrategy">
+      <point x="0.0" y="-72.0" />
+      <point x="977.4999999999998" y="1117.0" />
+      <point x="1181.9999999999998" y="1117.0" />
+      <point x="-44.0" y="49.0" />
+    </edge>
+    <edge source="edu.rice.comp504.pacman.model.strategy.ghost.RandomWalkStrategy" target="edu.rice.comp504.pacman.model.strategy.IUpdateStrategy">
+      <point x="0.0" y="-49.0" />
+      <point x="461.5" y="1097.0" />
+      <point x="1093.9999999999998" y="1097.0" />
+      <point x="-132.0" y="49.0" />
+    </edge>
+    <edge source="edu.rice.comp504.pacman.model.pac.Pac" target="edu.rice.comp504.pacman.model.Typeable">
+      <point x="-75.25" y="-153.0" />
+      <point x="1796.2499999999998" y="409.0" />
+      <point x="1644.2499999999998" y="409.0" />
+      <point x="8.5" y="25.5" />
+    </edge>
+    <edge source="edu.rice.comp504.pacman.model.ghost.Ghost" target="java.beans.PropertyChangeListener">
+      <point x="0.0" y="-314.0" />
+      <point x="2552.5" y="379.0" />
+      <point x="2182.5" y="379.0" />
+      <point x="112.875" y="25.5" />
+    </edge>
+    <edge source="edu.rice.comp504.pacman.model.ghost.Ghost" target="edu.rice.comp504.pacman.model.Typeable">
+      <point x="-126.33333333333348" y="-314.0" />
+      <point x="2426.1666666666665" y="389.0" />
+      <point x="1678.2499999999998" y="389.0" />
+      <point x="42.5" y="25.5" />
+    </edge>
+    <edge source="edu.rice.comp504.pacman.model.pac.Pac" target="java.beans.PropertyChangeListener">
+      <point x="75.25" y="-153.0" />
+      <point x="1946.7499999999998" y="429.0" />
+      <point x="2031.9999999999998" y="429.0" />
+      <point x="-37.625" y="25.5" />
+    </edge>
+    <edge source="edu.rice.comp504.pacman.model.cmd.InteractCmd" target="edu.rice.comp504.pacman.model.cmd.IPacManCmd">
+      <point x="0.0" y="-83.5" />
+      <point x="1206.5" y="1471.0" />
+      <point x="1388.0" y="1471.0" />
+      <point x="-44.75" y="25.5" />
+    </edge>
+    <edge source="edu.rice.comp504.pacman.model.strategy.collision.ScoreStrategy" target="edu.rice.comp504.pacman.model.strategy.ICollisionStrategy">
+      <point x="0.0" y="-106.5" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="java.beans.PropertyChangeListener" target="java.util.EventListener">
+      <point x="0.0" y="-25.5" />
+      <point x="0.0" y="13.0" />
+    </edge>
+    <edge source="edu.rice.comp504.pacman.model.strategy.ghost.AfterDieStrategy" target="edu.rice.comp504.pacman.model.strategy.IUpdateStrategy">
+      <point x="0.0" y="-49.0" />
+      <point x="2034.9999999999998" y="1097.0" />
+      <point x="1357.9999999999998" y="1097.0" />
+      <point x="132.0" y="49.0" />
+    </edge>
+    <edge source="edu.rice.comp504.pacman.model.strategy.ghost.StayAwayStrategy" target="edu.rice.comp504.pacman.model.strategy.IUpdateStrategy">
+      <point x="0.0" y="-95.0" />
+      <point x="1508.9999999999998" y="1117.0" />
+      <point x="1269.9999999999998" y="1117.0" />
+      <point x="44.0" y="49.0" />
+    </edge>
+    <edge source="edu.rice.comp504.pacman.model.strategy.IUpdateStrategy" target="edu.rice.comp504.pacman.model.Typeable">
+      <point x="0.0" y="-49.0" />
+      <point x="1225.9999999999998" y="399.0" />
+      <point x="1610.2499999999998" y="399.0" />
+      <point x="-25.5" y="25.5" />
+    </edge>
+    <edge source="edu.rice.comp504.pacman.model.strategy.ghost.ChaseManStrategy" target="edu.rice.comp504.pacman.model.strategy.IUpdateStrategy">
+      <point x="0.0" y="-61.0" />
+      <point x="722.4999999999998" y="1107.0" />
+      <point x="1137.9999999999998" y="1107.0" />
+      <point x="-88.0" y="49.0" />
+    </edge>
+    <edge source="edu.rice.comp504.pacman.model.wall.Wall" target="edu.rice.comp504.pacman.model.Typeable">
+      <point x="-75.25" y="-130.0" />
+      <point x="1475.2499999999998" y="409.0" />
+      <point x="1627.2499999999998" y="409.0" />
+      <point x="-8.5" y="25.5" />
+    </edge>
+    <edge source="edu.rice.comp504.pacman.model.strategy.ghost.IntersectStrategy" target="edu.rice.comp504.pacman.model.strategy.IUpdateStrategy">
+      <point x="0.0" y="-49.0" />
+      <point x="1793.4999999999998" y="1107.0" />
+      <point x="1313.9999999999998" y="1107.0" />
+      <point x="88.0" y="49.0" />
+    </edge>
+    <edge source="edu.rice.comp504.pacman.model.cmd.MoveCmd" target="edu.rice.comp504.pacman.model.cmd.IPacManCmd">
+      <point x="0.0" y="-37.5" />
+      <point x="1659.0" y="1471.0" />
+      <point x="1477.5" y="1471.0" />
+      <point x="44.75" y="25.5" />
+    </edge>
+    <edge source="edu.rice.comp504.pacman.model.strategy.ICollisionStrategy" target="edu.rice.comp504.pacman.model.Typeable">
+      <point x="0.0" y="-25.5" />
+      <point x="158.5" y="389.0" />
+      <point x="1593.2499999999998" y="389.0" />
+      <point x="-42.5" y="25.5" />
+    </edge>
+    <edge source="edu.rice.comp504.pacman.model.man.Man" target="java.beans.PropertyChangeListener">
+      <point x="0.0" y="-187.5" />
+      <point x="2192.5" y="429.0" />
+      <point x="2107.25" y="429.0" />
+      <point x="37.625" y="25.5" />
+    </edge>
+    <edge source="edu.rice.comp504.pacman.model.man.Man" target="edu.rice.comp504.pacman.model.Typeable">
+      <point x="-100.33333333333348" y="-187.5" />
+      <point x="2092.166666666666" y="399.0" />
+      <point x="1661.2499999999998" y="399.0" />
+      <point x="25.5" y="25.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.663216011042098" x="746.1638917793964" y="231.33402705515084" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>public</VISIBILITY>
+</Diagram>
+
